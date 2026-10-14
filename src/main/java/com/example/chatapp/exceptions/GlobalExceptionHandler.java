@@ -94,6 +94,23 @@ public class GlobalExceptionHandler {
     }
 
     /**
+     * Handle static resource or endpoint not found errors gracefully (returns 404).
+     */
+    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+    public ResponseEntity<ApiExceptionResponse> handleNoResourceFound(
+            org.springframework.web.servlet.resource.NoResourceFoundException ex,
+            HttpServletRequest request
+    ) {
+        log.info("Resource not found: uri={}", request.getRequestURI());
+        ApiExceptionResponse response = ApiExceptionResponse.builder()
+                .status("error")
+                .message("Resource not found: " + request.getRequestURI())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    /**
      * Catch-all handler for unexpected errors.
      */
     @ExceptionHandler(Exception.class)
