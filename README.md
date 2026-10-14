@@ -216,6 +216,19 @@ You can demonstrate real-time Pub/Sub live in seconds:
 
 ---
 
+## 🐳 Why a Dockerfile is Included
+
+This repository includes a multi-stage `Dockerfile` and `.dockerignore` for the following key reasons:
+1. **Java 21 Environment Consistency**: This application is built with **Java 21** and **Spring Boot 4**. Many cloud platforms (like Render, Railway, or AWS) default to older runtimes (Java 11 or 17). The Dockerfile packages the official `eclipse-temurin:21` image, ensuring the cloud environment matches local development exactly and eliminating `UnsupportedClassVersionError` issues.
+2. **Zero-Setup Local & Reviewer Testing**: Anyone testing or reviewing this project without JDK 21 or Maven installed can build and launch it with:
+   ```bash
+   docker build -t redis-chat-app .
+   docker run -p 8080:8080 redis-chat-app
+   ```
+3. **Turnkey Cloud Deployment**: Cloud platforms like Render can detect the Dockerfile automatically and deploy the containerized web service with zero manual server configuration.
+
+---
+
 ## 💾 Redis Persistence (Requirement 5)
 
 By default, Redis stores data in RAM. Requirement 5 specifies using persistence (RDB snapshots or Append-Only File) to guarantee **durability** so data survives server restarts.
