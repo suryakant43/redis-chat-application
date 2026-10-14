@@ -1,0 +1,149 @@
+{
+  "info": {
+    "name": "Redis Chat App API",
+    "description": "Postman Collection for Redis Chat Application backend APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Chat Room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"roomName\": \"general\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chatapp/chatrooms",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "chatapp",
+            "chatrooms"
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Join Chat Room",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"participant\": \"guest_user\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chatapp/chatrooms/general/join",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "chatapp",
+            "chatrooms",
+            "general",
+            "join"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Send Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"participant\": \"guest_user\",\n  \"message\": \"Hello, everyone!\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/chatapp/chatrooms/general/messages",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "chatapp",
+            "chatrooms",
+            "general",
+            "messages"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Retrieve Chat History",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/chatapp/chatrooms/general/messages?limit=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "chatapp",
+            "chatrooms",
+            "general",
+            "messages"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Delete Chat Room",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/chatapp/chatrooms/general",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "chatapp",
+            "chatrooms",
+            "general"
+          ]
+        }
+      }
+    }
+  ]
+}
